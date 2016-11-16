@@ -27,7 +27,7 @@ To get started with this project:
 
         > re-start
 
-4. Browse to [http://localhost:8080](http://localhost:8080/)
+4. Browse to [http://localhost:8080/isActive](http://localhost:8080/isActive)
 
 5. Stop the application:
 
