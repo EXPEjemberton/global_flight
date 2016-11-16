@@ -15,24 +15,32 @@ Contributors include:
 
 To get started with this project:
 
-1. Launch SBT:
+1. Get the [Bower](https://bower.io/) dependencies, to go folder `src/main/resources/webapp`
+
+        $ bower install
+
+2. Launch SBT:
 
         $ sbt
 
-2. Compile everything and run all tests:
+3. Compile everything and run all tests:
 
         > test
 
-3. Start the application:
+4. Start the application:
 
         > re-start
 
-4. Browse to [http://localhost:8080/isActive](http://localhost:8080/isActive)
+5. Browse to [http://localhost:8080/isActive](http://localhost:8080/isActive)
 
-5. Stop the application:
+6. Stop the application:
 
         > re-stop
-        
+
+### Base url
+
+[http://localhost:8080](http://localhost:8080) serves the main page with map
+
 ## Endpoints
 
 There are only a few endpoints at the moment, with more coming soon:
