@@ -1,12 +1,11 @@
 package com.flight
 
 import akka.actor.Actor
-import com.flight.data.NearestAirportService
 import com.flight.model.GeographicLocation
+import com.flight.services.NearestCityService
 import org.json4s.DefaultFormats
 import org.json4s.jackson.Serialization.write
 import spray.http.MediaTypes._
-import spray.http._
 import spray.routing._
 
 class FlightServiceActor extends Actor with FlightService {
@@ -42,14 +41,14 @@ trait FlightService extends HttpService {
         }
       }
     } ~
-      path("nearest") {
+      path("nearest_city") {
         get {
           parameters('latitude, 'longitude) { (latitude, longitude) =>
             respondWithMediaType(`application/json`) {
               complete {
-                val nearestCity = NearestAirportService.findNearestAirportCity(
+                val nearestCity = NearestCityService.find {
                   GeographicLocation(BigDecimal(latitude), BigDecimal(longitude))
-                )
+                }
                 write(nearestCity)
               }
             }

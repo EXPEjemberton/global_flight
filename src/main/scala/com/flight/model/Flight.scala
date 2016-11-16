@@ -1,9 +1,11 @@
 package com.flight.model
 
+import java.time.LocalDateTime
+
 case class Flight(
-  id: Int,
   origin: Airport,
   destination: Airport,
   airline: Airline,
-  price: BigDecimal
+  price: BigDecimal,
+  takeoff: LocalDateTime
 )
