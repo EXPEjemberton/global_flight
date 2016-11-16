@@ -29,7 +29,21 @@ trait FlightService extends HttpService {
   implicit val formats = DefaultFormats
 
   val route = get {
-    path("isActive") {
+    path("") {
+      getFromResource("webapp/index.html")
+    } ~ pathPrefix("webapp") {
+      compressResponse() {
+        getFromResourceDirectory("webapp")
+      }
+    } ~ pathPrefix("bower_components") {
+      compressResponse() {
+        getFromResourceDirectory("webapp/bower_components")
+      }
+    } ~ pathPrefix("assets") {
+      compressResponse() {
+        getFromResourceDirectory("webapp/assets")
+      }
+    } ~ path("isActive") {
       respondWithMediaType(`text/html`) {
         complete {
           <html>
