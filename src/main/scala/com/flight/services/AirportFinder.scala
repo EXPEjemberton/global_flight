@@ -8,7 +8,7 @@ object AirportFinder {
   def findByCity(city: City): List[Airport] = {
     val list: ListBuffer[Airport] = ListBuffer()
 
-    val airports = io.Source.fromFile("data/us_airports.csv")
+    val airports = io.Source.fromFile(CSVStore.airports)
     for (airport <- airports.getLines) {
       val airportSplit = airport.split(",")
       if (city.name == airportSplit(2)) {

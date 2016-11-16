@@ -1,8 +1,10 @@
 package com.flight
 
+import java.time.LocalDate
+
 import akka.actor.Actor
 import com.flight.model.GeographicLocation
-import com.flight.services.{MapPointRetriever, NearestCityService}
+import com.flight.services.{CityFinder, MapPointRetriever, MockFlightGenerator, NearestCityService}
 import org.json4s.DefaultFormats
 import org.json4s.jackson.Serialization.write
 import spray.http.MediaTypes._
@@ -57,6 +59,19 @@ trait FlightService extends HttpService {
             }
           }
         }
+    } ~ path("get_flights") {
+      parameters('origin, 'dest, 'year, 'month, 'day) { (origin, dest, year, month, day) =>
+        respondWithMediaType(`application/json`) {
+          complete {
+            val flights = MockFlightGenerator.generate(
+              CityFinder.getByName(origin).get,
+              CityFinder.getByName(dest).get,
+              LocalDate.of(year.toInt, month.toInt, day.toInt)
+            )
+            write(flights)
+          }
+        }
+      }
     }
   }
 }
