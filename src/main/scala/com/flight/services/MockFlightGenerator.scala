@@ -9,6 +9,10 @@ import scala.util.Random
 
 object MockFlightGenerator {
 
+  def generateReturn(originCity: City, destCity: City, departDate: LocalDate, returnDate: LocalDate): List[Flight] = {
+    generate(originCity, destCity, departDate) ++ generate(destCity, originCity, returnDate)
+  }
+
   def generate(originCity: City, destCity: City, date: LocalDate): List[Flight] = {
     val maxFlights = Math.max(((originCity.population + destCity.population) / 200000L).toDouble.ceil.toInt, 20)
     val num = RandomUtil.pick(Range(1,maxFlights).toList)
