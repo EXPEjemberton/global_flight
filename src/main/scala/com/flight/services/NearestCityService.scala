@@ -8,7 +8,7 @@ object NearestCityService {
 
     var closestCity: City = null
     var closestDistance: BigDecimal = 100000 // Arbitrary large number.
-    val airportCities = io.Source.fromFile("/Users/jemberton/global_flight/data/populated_airport_cities.csv")
+    val airportCities = io.Source.fromFile("data/populated_airport_cities.csv")
 
     for (city <- airportCities.getLines) {
       val cityArr = city.split(",")

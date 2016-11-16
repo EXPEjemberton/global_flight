@@ -6,7 +6,7 @@ import scala.collection.mutable.ListBuffer
 
 object CityFinder {
 
-  val cities = io.Source.fromFile("/Users/jemberton/global_flight/data/populated_airport_cities.csv")
+  val cities = io.Source.fromFile("data/populated_airport_cities.csv")
 
   def getByName(name: String): Option[City] = {
     for (city <- cities.getLines) {
