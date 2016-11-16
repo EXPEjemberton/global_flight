@@ -22,4 +22,6 @@ class FlightFinder extends Neo4jWrapper with SingletonEmbeddedGraphDatabaseServi
     }
   }
 
+
+
 }

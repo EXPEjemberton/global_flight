@@ -9,3 +9,9 @@ case class Flight(
   price: BigDecimal,
   takeoff: LocalDateTime
 )
+
+case class FlightWithFinalPrice(
+  flight: Flight,
+  roundTrip: Boolean,
+  finalPrice: BigDecimal
+)
