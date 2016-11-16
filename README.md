@@ -39,4 +39,10 @@ There are only a few endpoints at the moment, with more coming soon:
 
 1. /isActive
 
-2. /nearest_city&latitude={latitude}&longitude={longitude}
+2. /find_nearest_city&latitude={latitude}&longitude={longitude}
+
+    > http://localhost:8080/find_nearest_city?latitude=41.8781136&longitude=-87.6297982
+
+3. /retrieve_map_points&north={northEdge}&south={southEdge]&east={eastEdge]&west={westEdge}
+
+    > http://localhost:8080/retrieve_map_points?north=41.8781136&south=31.98223&east=90.19921&west=-87.6297982

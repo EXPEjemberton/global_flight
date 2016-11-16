@@ -2,7 +2,7 @@ package com.flight
 
 import akka.actor.Actor
 import com.flight.model.GeographicLocation
-import com.flight.services.NearestCityService
+import com.flight.services.{MapPointRetriever, NearestCityService}
 import org.json4s.DefaultFormats
 import org.json4s.jackson.Serialization.write
 import spray.http.MediaTypes._
@@ -28,32 +28,35 @@ trait FlightService extends HttpService {
 
   val route = get {
     path("isActive") {
-      get {
-        respondWithMediaType(`text/html`) {
-          // XML is marshalled to `text/xml` by default, so we simply override here
+      respondWithMediaType(`text/html`) {
+        complete {
+          <html>
+            <body>
+              <h1>Active!</h1>
+            </body>
+          </html>
+        }
+      }
+    } ~ path("find_nearest_city") {
+      parameters('latitude, 'longitude) { (latitude, longitude) =>
+        respondWithMediaType(`application/json`) {
           complete {
-            <html>
-              <body>
-                <h1>This shit is <i>active</i>!</h1>
-              </body>
-            </html>
+            val nearestCity = NearestCityService.find {
+              GeographicLocation(BigDecimal(latitude), BigDecimal(longitude))
+            }
+            write(nearestCity)
           }
         }
       }
-    } ~
-      path("nearest_city") {
-        get {
-          parameters('latitude, 'longitude) { (latitude, longitude) =>
-            respondWithMediaType(`application/json`) {
-              complete {
-                val nearestCity = NearestCityService.find {
-                  GeographicLocation(BigDecimal(latitude), BigDecimal(longitude))
-                }
-                write(nearestCity)
-              }
+    } ~ path("retrieve_map_points") {
+        parameters('north, 'south, 'east, 'west) { (north, south, east, west) =>
+          respondWithMediaType(`application/json`) {
+            complete {
+              val mapPoints = MapPointRetriever.retrieve(north, south, east, west)
+              write(mapPoints)
             }
           }
         }
-      }
+    }
   }
 }

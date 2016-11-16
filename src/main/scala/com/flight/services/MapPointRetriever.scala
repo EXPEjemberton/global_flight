@@ -8,7 +8,7 @@ object MapPointRetriever {
 
   val cities = CityFinder.getAll
 
-  def retrieve(northEdge: BigDecimal, southEdge: BigDecimal, westEdge: BigDecimal, eastEdge: BigDecimal): List[MapPoint] = {
+  def retrieve(northEdge: BigDecimal, southEdge: BigDecimal, eastEdge: BigDecimal, westEdge: BigDecimal): List[MapPoint] = {
 
     def fitsBounds(city: City) =
       city.location.latitude > southEdge &&
@@ -36,4 +36,8 @@ object MapPointRetriever {
 
     mapPoints.toList
   }
+
+  def retrieve(northEdge: String, southEdge: String, eastEdge: String, westEdge: String): List[MapPoint] =
+    retrieve(BigDecimal(northEdge), BigDecimal(southEdge), BigDecimal(eastEdge), BigDecimal(westEdge))
+
 }
