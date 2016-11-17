@@ -54,7 +54,3 @@ There are only a few endpoints at the moment, with more coming soon:
 3. /retrieve_map_points&north={northEdge}&south={southEdge]&east={eastEdge]&west={westEdge}
 
     > http://localhost:8080/retrieve_map_points?north=41.8781136&south=31.98223&east=90.19921&west=-87.6297982
-    
-4. /get_flights?origin={origin_city}&dest={dest_city}&year={year}&month={month}&city={city}
-
-    > http://localhost:8080/get_flights?origin=Chicago&dest=Los%20Angeles&year=2016&month=11&day=30
