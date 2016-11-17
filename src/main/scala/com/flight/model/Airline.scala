@@ -6,6 +6,11 @@ case class Airline(
   rating: BigDecimal
 )
 
+case class Air(
+  id: Double,
+  name: String
+)
+
 object Airline {
   val supported = List(
     Airline(1, "American Airlines", 2.5),
