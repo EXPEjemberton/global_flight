@@ -6,11 +6,11 @@ import scala.collection.mutable.ListBuffer
 
 object CityFinder {
 
-  val cities = io.Source.fromFile(CSVStore.cities)
+  def cities = io.Source.fromFile(CSVStore.cities)
 
   def getByName(name: String): Option[City] = {
     for (city <- cities.getLines) {
-      if (name == city.name) return Some(city)
+      if (toCity(city).name == name) Some(city)
     }
     None
   }
@@ -28,7 +28,6 @@ object CityFinder {
       name = split(1),
       population = split(5).toDouble.toLong,
       location = GeographicLocation(latitude = split(3),
-      longitude = split(4))
-      )
+      longitude = split(4)))
   }
 }

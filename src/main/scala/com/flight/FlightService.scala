@@ -73,6 +73,15 @@ trait FlightService extends HttpService {
             }
           }
         }
+    } ~ path("retrieve_default_map_points") {
+          respondWithMediaType(`application/json`) {
+            complete {
+              // The input numbers are the boundaries of the continental US.
+              val mapPoints = MapPointRetriever.retrieve("49.8", "24.2", "-66.5", "-125.5")
+            write(mapPoints)
+          }
+        }
+      }
     } ~ path("get_flights") {
       parameters('origin, 'dest, 'year, 'month, 'day) { (origin, dest, year, month, day) =>
         respondWithMediaType(`application/json`) {
@@ -87,5 +96,4 @@ trait FlightService extends HttpService {
         }
       }
     }
-  }
 }

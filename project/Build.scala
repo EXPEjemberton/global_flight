@@ -36,8 +36,10 @@ object Build extends Build {
         | import com.flight.services.MapPointRetriever
         | import com.flight.services.MockFlightGenerator
         | import com.flight.services.NearestCityService
-        | val chicago = CityFinder.getByName("Chicago").get
-        | val la = CityFinder.getByName("Los Angeles").get
+        | import com.flight.services.NodeConnector
+        | import com.flight.services.CSVStore
+        | val chicago = CityFinder.getByName("Chicago")
+        | val la = CityFinder.getByName("Los Angeles")
         | val now = java.time.LocalDate.now()
       """.stripMargin
   )
